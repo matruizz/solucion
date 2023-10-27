@@ -12,6 +12,10 @@ global start
 extern GDT_DESC
 extern screen_draw_layout
 extern IDT_DESC
+extern idt_init
+extern pic_reset
+extern pic_enable
+
 
 
 ; COMPLETAR - Definan correctamente estas constantes cuando las necesiten
@@ -59,7 +63,7 @@ start:
 
     ; COMPLETAR - Cargar la GDT
     LGDT &GDT_DESC
-    LIDT &IDT_DESC
+    
 
     ; COMPLETAR - Setear el bit PE del registro CR0
     mov eax, CR0
@@ -87,6 +91,7 @@ modo_protegido:
     mov ebp,0x25000
     mov esp,0x25000
 
+    
 
 
     print_text_pm start_pm_msg, start_pm_len, 0x15, 10, 10
@@ -98,6 +103,14 @@ modo_protegido:
     ; COMPLETAR - Inicializar pantalla
     
     call screen_draw_layout
+
+    call idt_init
+    LIDT &IDT_DESC
+
+    call pic_reset
+    call pic_enable
+    sti
+
     ; Ciclar infinitamente 
     mov eax, 0xFFFF
     mov ebx, 0xFFFF
