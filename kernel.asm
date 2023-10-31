@@ -20,7 +20,7 @@ extern pic_enable
 
 ; COMPLETAR - Definan correctamente estas constantes cuando las necesiten
 %define CS_RING_0_SEL  8
-%define DS_RING_0_SEL 16   
+%define DS_RING_0_SEL 24   
 
 
 BITS 16
@@ -110,6 +110,10 @@ modo_protegido:
     call pic_reset
     call pic_enable
     sti
+
+    xor eax, eax
+    int 88
+    int 98
 
     ; Ciclar infinitamente 
     mov eax, 0xFFFF

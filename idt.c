@@ -50,7 +50,7 @@ idt_descriptor_t IDT_DESC = {sizeof(idt) - 1, (uint32_t)&idt};
     .segsel = GDT_CODE_0_SEL,                                                  \
     .type = INTERRUPT_GATE_TYPE,                                                               \
     .dpl = 0,                                                                  \
-    .present = 0                                                               \
+    .present = 1                                                               \
   }
 
 /* COMPLETAR: Dado un numero de de interrupcion asigna a `idt` la entrada
@@ -62,7 +62,7 @@ idt_descriptor_t IDT_DESC = {sizeof(idt) - 1, (uint32_t)&idt};
     .segsel = GDT_CODE_3_SEL,                                                  \
     .type = INTERRUPT_GATE_TYPE,                                                               \
     .dpl = 3,                                                                  \
-    .present = 0                                                               \
+    .present = 1                                                               \
   }
 
 void idt_init() {
