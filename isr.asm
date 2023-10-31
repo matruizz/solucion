@@ -156,17 +156,13 @@ _isr33:
 global _isr88
 ; COMPLETAR: Implementar la rutina
 _isr88:
-    pushad
     mov eax, 0x58
-    popad
     iret
 
 global _isr98
 ; COMPLETAR: Implementar la rutina
 _isr98:
-    pushad
     mov eax, 0x62
-    popad
     iret
 
 ; PushAD Order
